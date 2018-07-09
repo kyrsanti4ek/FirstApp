@@ -1,0 +1,56 @@
+
+	
+	<div id="screen" class="screen"
+		style="width: 1500px; height: 720px; background: url(&amp;quot;preview/android-tv-android-tv-signup.png?1530728913567&amp;quot;) 0% 0%/1280px 720px no-repeat rgb(255, 255, 255); margin-left: -640px; margin-top: -360px;">
+
+	   <img src="assets/logo-bg copy@1x.png" style="width: 680px; height: 680px; " />
+<span style="width: 109px; height: 38px; font-size: 45px; font-family:Roboto-Bold; color: #070707;position:relative; left: 60px; top: -570px"><b>Sign in</b></span >
+
+<div class="item">
+
+ <!--<textarea id="content" style="width: 141,9px; height: 40px; font-size: 50px; position:relative; left: 800px; top: -500px; opacity: 0.9;
+font-size: 25px;
+color: #A4AAB3;
+text-align: left;
+font-family: Roboto-Regular, sans-serif" rows="2" readonly="readonly">Full Name
+</textarea></div>-->
+
+<div class="container" >
+   
+  <form>
+    
+   
+      
+    <div class="group">   
+        <!-- placeholder="jsmith@example.com"-->
+      <input type="text" required data-ng-model="eMail">
+      <span class="bar"></span>
+      <label>E-mail</label>
+     
+      <img data-ng-show="isEMailCorrect" src="assets/ok_button.png" style="float: right; margin-top: -55px; margin-right: -330px" />
+            
+    </div>
+    
+     <div class="group" >      
+      <input type="password" required data-ng-model="password">
+      <span class="bar"></span>
+      <label>Password</label>
+    
+  
+    </div>
+   
+     </form>
+    
+ <div style="width: 109px; height: 38px; font-size: 25px; font-family:Arial; color: #366af7; position:absolute;  margin-top: 40px; margin-right: 150px"> <a href="#"  ui-sref="ForgotPassword" ><b>Forgot password?</b></a></div>     
+</div>
+
+
+<p><button class="styled" data-ng-click="login()"><b> SIGN IN </b></button></p>
+<p><button type="button" class="styled2" data-ng-click="goToSignUp()"><b> SIGN UP </b></button></p>
+
+
+
+</div>
+
+
+</div>
