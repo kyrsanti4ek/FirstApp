@@ -9,16 +9,23 @@ window.angular.module('nuWireApp.SignUp').controller('SignInCntrl', [
     		.then(function(firebaseUser) {
     			
     			
-    			if ("qaq0DszvoZQ0SvCKQkRP41UejrJ2-SDKHUWUR7SQ25"){
+    			var userId = firebase.auth().currentUser.uid; //get value of '/devices/' + userId + "-" + devicesID
+    			return firebase.database().ref('/devices/' + userId + "-" + devicesID).once('value').then(function(snapshot) {
+    			var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+    				
+    				});
+    			
+    			
+    			if (firebase.database().ref "qaq0DszvoZQ0SvCKQkRP41UejrJ2-SDKHUWUR7SQ25"){ // Success
     					
-    				alert("Success!");    		// Success
+    				alert("Success!");    		
     			}
     			
-    			else{
+    			else{ // if new device then goto register new device
     				$state.go("RegisterDevice");
     			}
     			
-    											// if new device then goto register new device
+    											
    })
     		.catch(function(error) {
     			  // Handle Errors here.
