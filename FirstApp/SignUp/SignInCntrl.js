@@ -7,8 +7,18 @@ window.angular.module('nuWireApp.SignUp').controller('SignInCntrl', [
     		
     		firebase.auth().signInWithEmailAndPassword($scope.eMail, $scope.password)
     		.then(function(firebaseUser) {
-    			alert("Success!");
-       // Success 
+    			
+    			
+    			if ("qaq0DszvoZQ0SvCKQkRP41UejrJ2-SDKHUWUR7SQ25"){
+    					
+    				alert("Success!");    		// Success
+    			}
+    			
+    			else{
+    				$state.go("RegisterDevice");
+    			}
+    			
+    											// if new device then goto register new device
    })
     		.catch(function(error) {
     			  // Handle Errors here.

@@ -1,45 +1,57 @@
 window.angular.module('nuWireApp.SignUp').controller('RegisterDeviceCntrl', [
     '$scope', '$state',
     function ($scope, $state) {
-    	$scope.isEMailCorrect=false;
     	
-    	$scope.login=function(){
-    		
-    		firebase.auth().signInWithEmailAndPassword($scope.eMail, $scope.password)
-    		.then(function(firebaseUser) {
-    			alert("Succec!");
-       // Success 
-   })
-    		.catch(function(error) {
-    			  // Handle Errors here.
-    			
-    			  var errorCode = error.code;
-    			  var errorMessage = error.message;
-    			  alert (errorMessage);
-    			  // ...
-    			});
-    		
+    	$scope.isDeviceNameCorrect=false;
     	
-    			
-    			
+    	$scope.registerDeviceName=function(){
+    		
+    		var database = firebase.database();
+        	
+    	
+    		
+        	var userId = firebase.auth().currentUser.uid;
+        	var devicesID = webapis.productinfo.getDuid();
+        	
+        	
+        	
+        	firebase.database().ref('users/' + userId+'/devices/' + userId + "-" + devicesID).set({
+    		    dev_id: userId + "-" + devicesID,
+    		    name: $scope.deviceName, //device->name
+    		    os: "Tizen",   	    
+    		    owner: userId,
+    		    settings:{
+    		    	"allow_local_discovery" : true,
+    	            "allow_online_discovery" : true,
+    	            "allow_web_access" : true,
+    	            "auto_accept_connect_requests" : true,
+    	            "auto_start" : true,
+    	            "auto_update" : true,
+    	            "pin_for_casting" : 1111,
+    	            "require_pin_for_casting" : false
+    	          },
+    		    
+    		    status:"online",
+    		    type: "tv"
+    		
+    		  });
+         	
     		};
-    		
+    	
     		$scope.goToSignUp=function(){
     			
-    			$state.go("SignUp");
+    		$state.go("SignUp");
     	
-    		
-    		
     	};
     	
-    	$scope.$watch("eMail", function(item){
-    		$scope.isEMailCorrect=false;
+    	$scope.$watch("deviceName", function(item){
+    		$scope.isDeviceNameCorrect=false;
     		if (item){
     			
-    			var rr=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    			
+    			var rr=/^\S{3,15}$/
+    			//любые символы - от 3-х до 15 без пробелов
     				if(item.match(rr)){ 
-    				$scope.isEMailCorrect=true;
+    				$scope.isDeviceNameCorrect=true;
     			}
     				
     		}

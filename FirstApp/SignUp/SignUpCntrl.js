@@ -4,15 +4,27 @@ window.angular.module('nuWireApp.SignUp').controller('SignUpCntrl', [
     	
     	$scope.signUp=function(){
     	
-    	firebase.auth().createUserWithEmailAndPassword($scope.eMail, $scope.password).catch(function(error) {
+    	firebase.auth().createUserWithEmailAndPassword($scope.eMail, $scope.password)
+    	
+    	.then(function(firebaseUser) {
+    		var database = firebase.database();
+        	var userId = firebase.auth().currentUser.uid;
+ 	       	firebase.database().ref('users/' + userId).set({
+        		"displayName" : $scope.fullName,
+        	    "uid" : userId 
+    		  });
+      
+    		})
+   
+    	.catch(function(error) {
   		
     		// Handle Errors here.
   		  var errorCode = error.code;
   		  var errorMessage = error.message;
   		 alert (errorMessage);
-  		  // ...
+  		 
   		});
-    	
+   
     	};
     	
     	$scope.goToSignIn=function(){
