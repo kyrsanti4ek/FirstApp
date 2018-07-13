@@ -26,18 +26,18 @@ window.angular.module('nuWireApp.SignUp', [
         
     })
     
+     .state('Settings', {
+        url: '/Settings',
+        templateUrl: 'SignUp/Settings.html',
+        controller: 'SettingsCntrl',
+        
+    })
+    
      .state('ForgotPassword', {
         url: '/ForgotPassword',
         templateUrl: 'SignUp/ForgotPassword.html',
         controller: 'ForgotPasswordCntrl',
        
-    })
-    
-         .state('Settings', {
-        url: '/Settings',
-        templateUrl: 'SignUp/Settings.html',
-        controller: 'SettingsCntrl',
-        
     });
     
    // $urlRouterProvider.otherwise('/SignIn');
